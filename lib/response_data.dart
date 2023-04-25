@@ -27,14 +27,10 @@ class User{
 
 @JsonSerializable()
 class ResponseData{
-  int code;
-  dynamic meta;
   List<dynamic>data;
 
   ResponseData(
-    {required this.code, 
-    required this.meta, 
-    required this.data});
+    {required this.data});
 
   factory ResponseData.fromJson(Map<String, dynamic> json) => _$ResponseDataFromJson(json);
   Map<String, dynamic> toJson() => _$ResponseDataToJson(this);

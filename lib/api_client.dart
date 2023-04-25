@@ -6,9 +6,9 @@ part 'api_client.g.dart';
 
 ///APIs class is for api tags
 class Apis {
-  static const String users = '/character/1,2,3,4,5,6,7,8,9,10';
+  static const String users = '8601346f-7db2-41f5-b300-22e8696426b5';
 }
-@RestApi(baseUrl: "https://rickandmortyapi.com/api/")
+@RestApi(baseUrl: "https://run.mocky.io/v3/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 

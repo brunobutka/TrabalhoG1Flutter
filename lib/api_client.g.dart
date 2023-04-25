@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://rickandmortyapi.com/api/';
+    baseUrl ??= 'https://run.mocky.io/v3/';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              '/character/1,2,3,4,5,6,7,8,9,10',
+              '8601346f-7db2-41f5-b300-22e8696426b5',
               queryParameters: queryParameters,
               data: _data,
             )
