@@ -87,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return Card(
           child: ListTile(
             leading: Image.network(
-              posts.data[index]['image'], // Substitua pelo caminho correto da sua imagem JPEG
+              posts.data[index]
+                  ['image'], // Substitua pelo URL correto da sua imagem
               width: 50,
               height: 50,
               fit: BoxFit.cover,
@@ -96,7 +97,15 @@ class _MyHomePageState extends State<MyHomePage> {
               posts.data[index]['name'],
               style: TextStyle(fontSize: 20),
             ),
-            subtitle: Text(posts.data[index]['species']),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                    'Specie: ${posts.data[index]['species']}'),
+                Text(
+                    'Gender: ${posts.data[index]['gender']}'), // Adiciona o campo "gender" como subtítulo
+              ],
+            ),
           ),
         );
       },
