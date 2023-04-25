@@ -21,24 +21,25 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<dynamic> getUsers() async {
+  Future<ResponseData> getUsers() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ResponseData>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/character/1,2,3,4,5,6,7,8,9,10',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+            .compose(
+              _dio.options,
+              '/character/1,2,3,4,5,6,7,8,9,10',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
     return value;
   }
 
