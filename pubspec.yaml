@@ -17,6 +17,10 @@ dependencies:
   dio: ^5.1.1
   built_value: ^8.4.4
   json_annotation: ^4.8.0
+  google_maps_flutter: ^2.2.5
+  google_maps_flutter_web: ^0.4.0+8
+  http: ^0.13.5
+  json_serializable: ^6.6.1
 
 dev_dependencies:
   flutter_test:
@@ -25,9 +29,11 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   retrofit_generator: ^6.0.0+3
   build_runner: ^2.3.3
-  json_serializable: ^6.6.1
   built_value_generator: ^8.4.4
 
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/locations.json

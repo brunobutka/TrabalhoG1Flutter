@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class NewClass extends StatefulWidget {
   const NewClass({super.key});
@@ -8,37 +9,30 @@ class NewClass extends StatefulWidget {
 }
 
 class _NewClassState extends State<NewClass> {
+  late GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Map"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Nome',
-              //errorText: 'Informe o nome da aula',
-              border: OutlineInputBorder(),
-              /*suffixIcon: Icon(
-                Icons.error,
-              ),*/
-            ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Map'),
+          backgroundColor: Colors.green,
+        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
           ),
-          const SizedBox(height: 6),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Local',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-        ]),
+        ),
       ),
     );
   }
