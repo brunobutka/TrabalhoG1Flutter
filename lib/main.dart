@@ -1,7 +1,5 @@
-import 'package:trabalho_g1/response_data.dart';
 import 'package:flutter/material.dart';
-import 'package:trabalho_g1/api_client.dart';
-import 'package:dio/dio.dart';
+import 'package:trabalho_g1/confs/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,102 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Rick And Morty API & Map',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(context),
-    );
-  }
-
-  FutureBuilder<ResponseData> _buildBody(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
-    return FutureBuilder<ResponseData>(
-      future: client.getUsers(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final ResponseData? posts = snapshot.data;
-
-          return posts == null
-              ? Text("Erro na requisição")
-              : _buildListView(context, posts);
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildListView(BuildContext context, ResponseData posts) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            leading: Image.network(
-              posts.data[index]
-                  ['image'], // Substitua pelo URL correto da sua imagem
-              width: 50,
-              height: 50,
-              fit: BoxFit.cover,
-            ),
-            title: Text(
-              posts.data[index]['name'],
-              style: TextStyle(fontSize: 20),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    'Specie: ${posts.data[index]['species']}'),
-                Text(
-                    'Gender: ${posts.data[index]['gender']}'), // Adiciona o campo "gender" como subtítulo
-              ],
-            ),
-          ),
-        );
-      },
-      itemCount: posts.data.length,
+      initialRoute: HOME_PAGE,
+      routes: routesOfApp,
     );
   }
 }
