@@ -9,11 +9,29 @@ class NewClass extends StatefulWidget {
 }
 
 class _NewClassState extends State<NewClass> {
+  late BitmapDescriptor customIconOrigin;
+  late BitmapDescriptor customIconDestination;
+
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(-27.888523, -52.225743);
   Marker? _origin;
   Marker? _destination;
   Polyline? _polyline;
+
+  @override
+  void initState() {
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(45, 45)),
+            'assets/origin.png')
+        .then((icon) {
+      customIconOrigin = icon;
+    });
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(45, 45)),
+            'assets/destination.png')
+        .then((icon) {
+      customIconDestination = icon;
+    });
+    super.initState();
+  }
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -59,7 +77,7 @@ class _NewClassState extends State<NewClass> {
         _origin = Marker(
           markerId: const MarkerId('origin'),
           infoWindow: const InfoWindow(title: 'Origin'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+          icon: customIconOrigin,
           position: pos,
         );
         _destination = null;
@@ -70,7 +88,7 @@ class _NewClassState extends State<NewClass> {
         _destination = Marker(
           markerId: const MarkerId('destination'),
           infoWindow: const InfoWindow(title: 'Destination'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          icon: customIconDestination,
           position: pos,
         );
 
