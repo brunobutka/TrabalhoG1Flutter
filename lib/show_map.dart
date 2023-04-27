@@ -9,11 +9,11 @@ class NewClass extends StatefulWidget {
 }
 
 class _NewClassState extends State<NewClass> {
-  var classes = [];
-
   late GoogleMapController mapController;
-
   final LatLng _center = const LatLng(-27.888523, -52.225743);
+  Marker? _origin;
+  Marker? _destination;
+  Polyline? _polyline;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -30,12 +30,20 @@ class _NewClassState extends State<NewClass> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back)
+            icon: const Icon(Icons.arrow_back),
           ),
           backgroundColor: Colors.green,
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
+          markers: {
+            if (_origin != null) _origin!,
+            if (_destination != null) _destination!,
+          },
+          polylines: {
+            if (_polyline != null) _polyline!,
+          },
+          onLongPress: _addMarker,
           initialCameraPosition: CameraPosition(
             target: _center,
             zoom: 15.0,
@@ -43,5 +51,41 @@ class _NewClassState extends State<NewClass> {
         ),
       ),
     );
+  }
+
+  void _addMarker(LatLng pos) {
+    if (_origin == null || (_origin != null && _destination != null)) {
+      setState(() {
+        _origin = Marker(
+          markerId: const MarkerId('origin'),
+          infoWindow: const InfoWindow(title: 'Origin'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+          position: pos,
+        );
+        _destination = null;
+        _polyline = null;
+      });
+    } else {
+      setState(() {
+        _destination = Marker(
+          markerId: const MarkerId('destination'),
+          infoWindow: const InfoWindow(title: 'Destination'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          position: pos,
+        );
+
+        final List<LatLng> polylinePoints = [
+          _origin!.position,
+          _destination!.position,
+        ];
+
+        _polyline = Polyline(
+          polylineId: const PolylineId('polyline'),
+          color: Colors.red,
+          points: polylinePoints,
+          width: 2
+        );
+      });
+    }
   }
 }
