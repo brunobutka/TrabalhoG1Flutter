@@ -22,14 +22,7 @@ class _ListClassesState extends State<ListClasses> {
         actions: [
           IconButton(
             onPressed: () {
-              Future future = Navigator.of(context).pushNamed(SHOW_MAP);
-              future.then((myClass) {
-                if (myClass != null) {
-                  setState(() {
-                    classes.add(myClass);
-                  });
-                }
-              });
+              Navigator.of(context).pushNamed(SHOW_MAP);
             },
             icon: const Icon(Icons.map)
           )

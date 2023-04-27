@@ -9,9 +9,11 @@ class NewClass extends StatefulWidget {
 }
 
 class _NewClassState extends State<NewClass> {
+  var classes = [];
+
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  final LatLng _center = const LatLng(-27.888523, -52.225743);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -24,13 +26,19 @@ class _NewClassState extends State<NewClass> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Map'),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back)
+          ),
           backgroundColor: Colors.green,
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: _center,
-            zoom: 11.0,
+            zoom: 15.0,
           ),
         ),
       ),
