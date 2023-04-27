@@ -20,12 +20,12 @@ class _NewClassState extends State<NewClass> {
 
   @override
   void initState() {
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(45, 45)),
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(45, 45)),
             'assets/origin.png')
         .then((icon) {
       customIconOrigin = icon;
     });
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(45, 45)),
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(45, 45)),
             'assets/destination.png')
         .then((icon) {
       customIconDestination = icon;
