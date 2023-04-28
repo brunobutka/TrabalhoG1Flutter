@@ -12,3 +12,9 @@ Sobre a implementação do Maps, foi desenvolvida uma funcionalidade que, com o 
 
 ### Funcionalidade do APP
 Para entender como funciona a aplicação, podemos observar o GIF abaixo:
+
+<div align="center">
+
+  ![giphy](https://user-images.githubusercontent.com/58181398/235268576-69b08192-2d67-4792-8dfa-7e0c6451c9d3.gif)
+  
+</div>
