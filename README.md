@@ -1,16 +1,14 @@
-# trabalho_g1
+# Trabalho G1 - Rick And Morty API & Google Maps
 
-A new Flutter project.
+## Integrantes:
+- Brener Augusto de Oliveira
+- Bruno Butka
 
-## Getting Started
+### Retrofit
+Para o uso do retrofit foi realizado o mock de alguns dados retornados da [<b>API Rick And Morty</b>](https://rickandmortyapi.com/). Para o mock, foram selecionados 10 dados que posteriormente foram mockados utilizando o [<b>Mocky</b>](https://designer.mocky.io/).
 
-This project is a starting point for a Flutter application.
+### Maps
+Sobre a implementação do Maps, foi desenvolvida uma funcionalidade que, com o botão direito do mouse sobre o mapa, é possível marcar um ponto de origem e um ponto de destino. Também, quando os dois pontos são inseridos, é desenhada uma linha entre eles.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Funcionalidade do APP
+Para entender como funciona a aplicação, podemos observar o GIF abaixo:
